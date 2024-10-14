@@ -1,33 +1,33 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <router-link class="navbar-brand" :to="{name:'home'}">Myspace</router-link>
+            <router-link class="navbar-brand" style="color: #5a5aab;" :to="{ name: 'home' }">猫头鹰博客网</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
+            <div class="detailed-features">
                 <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                    <li class="nav-item ">
-                        <router-link class="nav-link" :to="{name:'home'}">首页</router-link>
-                    </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name: 'userList'}">日志</router-link>
+                        <router-link class="nav-link" :to="{ name: 'userList' }">博客</router-link>
                     </li>
                 </ul>
+            </div>
+            <div class="collapse navbar-collapse">
+
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0" v-if="!$store.state.user.is_login">
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'userLogin'}">登录</router-link>
+                        <router-link class="nav-link" :to="{ name: 'userLogin' }">登录</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'register'}">注册</router-link>
+                        <router-link class="nav-link" :to="{ name: 'register' }">注册</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0" v-else>
                     <li class="nav-item">
                         <router-link class="nav-link"
                             :to="{ name: 'userProfie', params: { userId: $store.state.user.id } }">
-                            {{$store.state.user.username }}</router-link>
+                            {{ $store.state.user.username }}</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="cursor: pointer;" @click="logout">退出</a>
@@ -60,9 +60,15 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .navbar-nav {
     display: flex;
     justify-content: flex-end;
+}
+
+.navbar-collapse {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row-reverse;
 }
 </style>
